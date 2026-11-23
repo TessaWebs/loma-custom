@@ -1,0 +1,1657 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LOMA Custom — Logística y Manufactura Hechas a la Medida</title>
+  <meta name="description" content="Ayudamos a empresas y emprendedores a materializar sus proyectos de generación de valor en Venezuela. Soluciones de manufactura química y logística integral hechas a la medida.">
+  <link rel="icon" type="image/png" href="assets/brand/loma_cube_icon.png">
+
+  <!-- Google Fonts Preconnect & Imports -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            syne: ['Syne', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Instrument Serif"', 'serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            loma: {
+              cyan: '#00ADEF',
+              lime: '#71BF45',
+              orange: '#F6821F',
+              yellow: '#FFCA08',
+              violet: '#92278F',
+              dark: '#050B17',
+              surface: '#0F1C36',
+              navy: '#0B1528',
+              card: 'rgba(15, 28, 54, 0.75)',
+              border: 'rgba(255, 255, 255, 0.08)',
+            }
+          },
+          animation: {
+            'float-slow': 'floatSlow 7s ease-in-out infinite',
+            'pulse-glow': 'pulseGlow 5s ease-in-out infinite',
+            'marquee': 'marquee 28s linear infinite',
+            'pop-in': 'popIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+          },
+          keyframes: {
+            floatSlow: {
+              '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+              '50%': { transform: 'translateY(-14px) rotate(1.5deg)' },
+            },
+            pulseGlow: {
+              '0%, 100%': { opacity: '0.4', transform: 'scale(1)' },
+              '50%': { opacity: '0.7', transform: 'scale(1.08)' },
+            },
+            marquee: {
+              '0%': { transform: 'translateX(0%)' },
+              '100%': { transform: 'translateX(-50%)' },
+            },
+            popIn: {
+              '0%': { opacity: '0', transform: 'scale(0.92) translateY(12px)' },
+              '100%': { opacity: '1', transform: 'scale(1) translateY(0px)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Modern Minimalist Utilities */
+    body {
+      background-color: #0B1528;
+      color: #E2E8F0;
+      overflow-x: hidden;
+      font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Ambient noise overlay */
+    .bg-noise {
+      background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 0);
+      background-size: 28px 28px;
+    }
+
+    /* Glassmorphism styling */
+    .glass-panel {
+      background: rgba(15, 28, 54, 0.72);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .glass-pill {
+      background: rgba(11, 21, 42, 0.88);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    /* Super Fluid Touch Carousels for Mobile */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .carousel-touch {
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
+    }
+    .carousel-snap {
+      scroll-snap-align: center;
+      scroll-snap-stop: always;
+    }
+
+    /* Card Hover Physics */
+    .pop-card {
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                  box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                  border-color 0.4s ease;
+    }
+    .pop-card:hover {
+      transform: translateY(-6px) scale(1.01);
+    }
+
+    /* Glow helpers */
+    .glow-cyan:hover {
+      box-shadow: 0 15px 35px -10px rgba(0, 173, 239, 0.35);
+      border-color: rgba(0, 173, 239, 0.5);
+    }
+    .glow-lime:hover {
+      box-shadow: 0 15px 35px -10px rgba(113, 191, 69, 0.35);
+      border-color: rgba(113, 191, 69, 0.5);
+    }
+    .glow-orange:hover {
+      box-shadow: 0 15px 35px -10px rgba(246, 130, 31, 0.35);
+      border-color: rgba(246, 130, 31, 0.5);
+    }
+    .glow-yellow:hover {
+      box-shadow: 0 15px 35px -10px rgba(255, 202, 8, 0.35);
+      border-color: rgba(255, 202, 8, 0.5);
+    }
+    .glow-violet:hover {
+      box-shadow: 0 15px 35px -10px rgba(146, 39, 143, 0.35);
+      border-color: rgba(146, 39, 143, 0.5);
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0B1528;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.16);
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Staggered entrance animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="relative min-h-screen selection:bg-loma-cyan selection:text-black font-sans">
+
+  <!-- Ambient Multi-color Gradient Glows (Identity Colors) -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div class="absolute -top-[20%] left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gradient-to-br from-loma-cyan/25 via-loma-violet/20 to-transparent rounded-full blur-[140px] animate-pulse-glow"></div>
+    <div class="absolute top-[35%] -left-[12%] w-[600px] h-[600px] bg-loma-lime/15 rounded-full blur-[130px]"></div>
+    <div class="absolute top-[60%] -right-[12%] w-[650px] h-[650px] bg-loma-orange/15 rounded-full blur-[140px]"></div>
+    <div class="absolute bottom-[-10%] left-1/3 w-[550px] h-[550px] bg-loma-yellow/12 rounded-full blur-[120px]"></div>
+    <div class="absolute inset-0 bg-noise opacity-30"></div>
+  </div>
+
+  <!-- ==================== 1. FLOATING NAVIGATION BAR ==================== -->
+  <header class="fixed top-5 inset-x-0 z-50 px-4 md:px-8 max-w-6xl mx-auto">
+    <nav class="glass-pill rounded-full px-5 py-3 flex items-center justify-between shadow-2xl transition-all duration-300">
+      
+      <!-- Brand Logo in Header -->
+      <a href="#hero" class="flex items-center gap-3 group" aria-label="LOMA Custom - Inicio">
+        <div class="relative w-8 h-8 flex items-center justify-center">
+          <img src="assets/brand/loma_cube_master.png" alt="LOMA Custom Isotipo" class="w-8 h-8 object-contain transition-transform duration-300 group-hover:scale-110">
+        </div>
+        <div class="flex flex-col">
+          <span class="font-syne font-bold text-sm tracking-wider uppercase text-white group-hover:text-loma-cyan transition-colors">
+            LOMA <span class="font-light text-slate-400">Custom</span>
+          </span>
+          <span class="text-[9px] font-mono tracking-widest text-slate-400 -mt-0.5">HECHO A LA MEDIDA</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Items -->
+      <div class="hidden md:flex items-center gap-7 text-xs font-mono tracking-wider uppercase text-slate-300">
+        <a href="#quienes-somos" class="hover:text-white transition-colors">Quiénes Somos</a>
+        <a href="#servicios" class="hover:text-loma-cyan transition-colors">Servicios</a>
+        <a href="#valores" class="hover:text-loma-lime transition-colors">Valores</a>
+        <a href="#clientes" class="hover:text-loma-orange transition-colors">Clientes</a>
+        <a href="#contacto" class="hover:text-loma-yellow transition-colors">Contacto</a>
+      </div>
+
+      <!-- Action Button -->
+      <div class="flex items-center gap-3">
+        <a href="#contacto" class="relative group overflow-hidden rounded-full p-[1px] focus:outline-none">
+          <span class="absolute inset-0 bg-gradient-to-r from-loma-cyan via-loma-lime to-loma-orange rounded-full opacity-80 group-hover:opacity-100 transition-opacity"></span>
+          <div class="relative px-4 py-1.5 rounded-full bg-loma-dark text-xs font-mono font-medium text-white tracking-wider flex items-center gap-2 group-hover:bg-opacity-80 transition-colors">
+            <span>COTIZAR</span>
+            <svg class="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+            </svg>
+          </div>
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobileMenuBtn" class="md:hidden text-slate-300 hover:text-white p-1 focus:outline-none" aria-label="Abrir menú">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Flyout Navigation -->
+    <div id="mobileMenu" class="hidden md:hidden mt-3 glass-panel rounded-3xl p-6 shadow-2xl border border-white/10 transition-all">
+      <div class="flex flex-col gap-4 text-sm font-mono tracking-wider uppercase text-slate-300">
+        <a href="#quienes-somos" class="mobile-nav-link py-2 border-b border-white/5 hover:text-white">Quiénes Somos</a>
+        <a href="#servicios" class="mobile-nav-link py-2 border-b border-white/5 hover:text-loma-cyan">Servicios (5 Pilares)</a>
+        <a href="#valores" class="mobile-nav-link py-2 border-b border-white/5 hover:text-loma-lime">Claves & Valores</a>
+        <a href="#clientes" class="mobile-nav-link py-2 border-b border-white/5 hover:text-loma-orange">Clientes Aliados</a>
+        <a href="#contacto" class="mobile-nav-link py-2 hover:text-loma-yellow">Contacto & Cotización</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== 2. SECCIÓN PRINCIPAL (HERO — PARTICLE WAVE OPTIMIZADO PARA MÓVIL & DESKTOP) ==================== -->
+  <section id="hero" class="relative min-h-[100dvh] w-full flex items-center justify-center z-10 overflow-hidden select-none py-16 px-4" style="background: #050B17;">
+
+    <!-- Canvas de partículas de cuadraditos con ola horizontal -->
+    <canvas id="particleWaveCanvas" class="absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
+
+    <!-- Halo ambiental central sutil -->
+    <div class="absolute inset-0 pointer-events-none z-[1]">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] max-w-full h-[400px] bg-gradient-to-r from-loma-cyan/12 via-transparent to-loma-violet/12 rounded-full blur-[120px]"></div>
+    </div>
+
+    <!-- CENTRO: Composición de Logo Oficial de la Marca -->
+    <div class="relative z-10 flex flex-col items-center justify-center px-4 max-w-5xl mx-auto text-center w-full">
+      
+      <!-- Hidden H1 for SEO / Accessibility -->
+      <h1 class="sr-only">LOMA Custom — Logística y Manufactura Hechas a la Medida</h1>
+
+      <!-- Lockup Desktop / Tablet (Horizontal Oficial) -->
+      <div class="hidden sm:flex relative max-w-lg md:max-w-2xl lg:max-w-3xl w-full mx-auto items-center justify-center transform hover:scale-[1.02] transition-transform duration-500">
+        <img src="assets/brand/loma_horizontal_lockup_master.png" alt="LOMA Custom" class="w-full h-auto object-contain filter drop-shadow-[0_0_45px_rgba(0,173,239,0.3)]">
+      </div>
+
+      <!-- Lockup Móvil (Vertical Apilado: Cubo 3D de Gran Impacto + Tipografía Oficial) -->
+      <div class="flex sm:hidden flex-col items-center justify-center gap-5 w-full mx-auto">
+        <div class="relative">
+          <div class="absolute -inset-4 bg-loma-cyan/25 rounded-full blur-xl"></div>
+          <img src="assets/brand/loma_cube_master.png" alt="LOMA Custom Isotipo" class="relative w-24 h-24 object-contain filter drop-shadow-[0_0_35px_rgba(0,173,239,0.45)]">
+        </div>
+        <img src="assets/brand/loma_brand_text_white.png" alt="LOMA Custom" class="w-56 max-w-[80vw] h-auto object-contain filter drop-shadow-[0_10px_25px_rgba(255,255,255,0.18)]">
+      </div>
+
+      <!-- Subtítulo técnico minimalista optimizado -->
+      <div class="mt-7 sm:mt-10 flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-[10px] sm:text-xs font-mono tracking-[0.2em] sm:tracking-[0.3em] uppercase text-slate-300 px-2 text-center max-w-md sm:max-w-none">
+        <span class="w-1.5 h-1.5 rounded-full bg-loma-cyan shrink-0"></span>
+        <span>Logística & Manufactura Hechas a la Medida</span>
+        <span class="w-1.5 h-1.5 rounded-full bg-loma-orange shrink-0"></span>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Particle Wave Animation Script -->
+  <script>
+  (function() {
+    const canvas = document.getElementById('particleWaveCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // Brand colors
+    const COLORS = [
+      '#00ADEF', // Cyan
+      '#F6821F', // Orange
+      '#71BF45', // Lime
+      '#FFCA08', // Yellow
+      '#92278F', // Violet
+    ];
+
+    let W, H, particles = [], isVisible = true;
+    const PARTICLE_COUNT_DESKTOP = 220;
+    const PARTICLE_COUNT_MOBILE = 100;
+
+    function resize() {
+      W = canvas.width = canvas.offsetWidth * devicePixelRatio;
+      H = canvas.height = canvas.offsetHeight * devicePixelRatio;
+      ctx.scale(devicePixelRatio, devicePixelRatio);
+    }
+
+    class Particle {
+      constructor(initRandomX = true) {
+        this.reset(initRandomX);
+      }
+      reset(initRandomX = true) {
+        const cW = canvas.offsetWidth;
+        const cH = canvas.offsetHeight;
+        // Initial distribution spans full width; respawns enter from off-screen left
+        this.x = initRandomX ? Math.random() * (cW + 100) : -30 - Math.random() * 120;
+        this.baseY = cH * 0.5 + (Math.random() - 0.5) * cH * 0.38;
+        this.y = this.baseY;
+        this.size = 4 + Math.random() * 8; // 4px to 12px
+        // Consistent, continuous fluid speed — never stalls or crawls
+        this.speed = 1.2 + Math.random() * 0.9; // 1.2 to 2.1 px per frame
+        this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
+        this.opacity = 0.35 + Math.random() * 0.55;
+        this.waveAmp = 12 + Math.random() * 32;
+        this.waveFreq = 0.002 + Math.random() * 0.005;
+        this.phase = Math.random() * Math.PI * 2;
+        this.rotation = Math.random() * Math.PI * 0.5;
+        this.rotSpeed = (Math.random() - 0.5) * 0.012;
+        this.depth = 0.75 + Math.random() * 0.45; // Depth multiplier
+      }
+      update(t) {
+        const cW = canvas.offsetWidth;
+        // Constant, uninterrupted left-to-right velocity
+        this.x += this.speed * this.depth;
+        // Harmonic wave moving left-to-right (- this.x ensures wave moves in same direction)
+        this.y = this.baseY + Math.sin(t * this.waveFreq * 60 + this.phase - this.x * 0.0035) * this.waveAmp;
+        this.rotation += this.rotSpeed;
+        
+        // Fluid continuous wrap: when fully past right boundary, respawn smoothly on left
+        if (this.x > cW + 50) {
+          this.reset(false);
+        }
+      }
+      draw(ctx) {
+        const cW = canvas.offsetWidth;
+        // Smooth edge fading so particles gracefully emerge on left and dissolve on right (never abruptly stop or cut off)
+        const fadeZone = 200;
+        let edgeAlpha = 1.0;
+        if (this.x > cW - fadeZone) {
+          edgeAlpha = Math.max(0, (cW - this.x) / fadeZone);
+        } else if (this.x < fadeZone) {
+          edgeAlpha = Math.max(0, this.x / fadeZone);
+        }
+
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.rotation);
+        ctx.globalAlpha = this.opacity * edgeAlpha;
+        ctx.fillStyle = this.color;
+
+        // Rounded square
+        const s = this.size * this.depth;
+        const r = s * 0.2; // subtle corner radius
+        ctx.beginPath();
+        ctx.moveTo(-s/2 + r, -s/2);
+        ctx.lineTo(s/2 - r, -s/2);
+        ctx.quadraticCurveTo(s/2, -s/2, s/2, -s/2 + r);
+        ctx.lineTo(s/2, s/2 - r);
+        ctx.quadraticCurveTo(s/2, s/2, s/2 - r, s/2);
+        ctx.lineTo(-s/2 + r, s/2);
+        ctx.quadraticCurveTo(-s/2, s/2, -s/2, s/2 - r);
+        ctx.lineTo(-s/2, -s/2 + r);
+        ctx.quadraticCurveTo(-s/2, -s/2, -s/2 + r, -s/2);
+        ctx.closePath();
+        ctx.fill();
+
+        ctx.restore();
+      }
+    }
+
+    function init() {
+      resize();
+      particles = [];
+      const count = window.innerWidth < 768 ? PARTICLE_COUNT_MOBILE : PARTICLE_COUNT_DESKTOP;
+      for (let i = 0; i < count; i++) {
+        particles.push(new Particle(true));
+      }
+    }
+
+    let frame = 0;
+    function animate() {
+      if (!isVisible) { requestAnimationFrame(animate); return; }
+      frame++;
+      const cW = canvas.offsetWidth;
+      const cH = canvas.offsetHeight;
+
+      // Clean trail effect with full coverage to prevent edge ghosting (dark navy #050B17)
+      ctx.fillStyle = 'rgba(5, 11, 23, 0.35)';
+      ctx.fillRect(-20, -20, cW + 40, cH + 40);
+
+      const t = frame / 60;
+
+      for (let p of particles) {
+        p.update(t);
+        p.draw(ctx);
+      }
+      requestAnimationFrame(animate);
+    }
+
+    // Handle resize
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        resize();
+        for (let p of particles) {
+          p.baseY = canvas.offsetHeight * 0.5 + (Math.random() - 0.5) * canvas.offsetHeight * 0.35;
+        }
+      }, 150);
+    });
+
+    // Pause when not visible for performance
+    const heroSection = document.getElementById('hero');
+    const heroObserver = new IntersectionObserver(entries => {
+      isVisible = entries[0].isIntersecting;
+    }, { threshold: 0.05 });
+    heroObserver.observe(heroSection);
+
+    init();
+    animate();
+  })();
+  </script>
+
+  <!-- ==================== 3. CLIENTES & MARCAS ALIADAS - KINETIC MARQUEE ==================== -->
+  <section id="clientes" class="py-12 border-y border-white/10 relative bg-loma-surface/30 backdrop-blur-sm overflow-hidden z-10">
+    <div class="max-w-6xl mx-auto px-4 mb-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2 text-xs font-mono tracking-widest uppercase text-slate-300">
+        <span class="w-2 h-2 rounded-full bg-loma-orange"></span>
+        <span>Marcas y Productos Vinculados a Nuestra Operación en Venezuela</span>
+      </div>
+      <div class="text-[11px] font-mono text-slate-400">QUALID • POTENCO • VALE • FINE • TIDY</div>
+    </div>
+
+    <!-- Infinite Scrolling Ticker -->
+    <div class="relative w-full overflow-hidden flex items-center">
+      <div class="flex items-center gap-12 whitespace-nowrap animate-marquee">
+        <!-- Loop Item Block 1 -->
+        <div class="flex items-center gap-14 text-2xl md:text-3xl font-syne font-bold uppercase tracking-wider text-slate-300">
+          <span class="hover:text-loma-cyan transition-colors flex items-center gap-3">
+            <span class="text-xs font-mono text-loma-cyan px-2 py-0.5 rounded border border-loma-cyan/30">LÍNEA</span> QUALID
+          </span>
+          <span class="text-slate-700">✦</span>
+          <span class="hover:text-loma-orange transition-colors flex items-center gap-3">
+            <span class="text-xs font-mono text-loma-orange px-2 py-0.5 rounded border border-loma-orange/30">AUTO</span> POTENCO
+          </span>
+          <span class="text-slate-700">✦</span>
+          <span class="hover:text-loma-lime transition-colors flex items-center gap-3">
+            <span class="text-xs font-mono text-loma-lime px-2 py-0.5 rounded border border-loma-lime/30">HOGAR</span> VALE
+          </span>
+          <span class="text-slate-700">✦</span>
+          <span class="hover:text-loma-yellow transition-colors flex items-center gap-3">
+            <span class="text-xs font-mono text-loma-yellow px-2 py-0.5 rounded border border-loma-yellow/30">LIMPIEZA</span> FINE
+          </span>
+          <span class="text-slate-700">✦</span>
+          <span class="hover:text-loma-violet transition-colors flex items-center gap-3">
+            <span class="text-xs font-mono text-loma-violet px-2 py-0.5 rounded border border-loma-violet/30">INSTITUCIONAL</span> TIDY
+          </span>
+          <span class="text-slate-700">✦</span>
+        </div>
+
+        <!-- Loop Item Block 2 (Clone for infinite marquee) -->
+        <div class="flex items-center gap-14 text-2xl md:text-3xl font-syne font-bold uppercase tracking-wider text-slate-300" aria-hidden="true">
+          <span class="hover:text-loma-cyan transition-colors flex items-center gap-3">
+            <span class="text-xs font-mono text-loma-cyan px-2 py-0.5 rounded border border-loma-cyan/30">LÍNEA</span> QUALID
+          </span>
+          <span class="text-slate-700">✦</span>
+          <span class="hover:text-loma-orange transition-colors flex items-center gap-3">
+            <span class="text-xs font-mono text-loma-orange px-2 py-0.5 rounded border border-loma-orange/30">AUTO</span> POTENCO
+          </span>
+          <span class="text-slate-700">✦</span>
+          <span class="hover:text-loma-lime transition-colors flex items-center gap-3">
+            <span class="text-xs font-mono text-loma-lime px-2 py-0.5 rounded border border-loma-lime/30">HOGAR</span> VALE
+          </span>
+          <span class="text-slate-700">✦</span>
+          <span class="hover:text-loma-yellow transition-colors flex items-center gap-3">
+            <span class="text-xs font-mono text-loma-yellow px-2 py-0.5 rounded border border-loma-yellow/30">LIMPIEZA</span> FINE
+          </span>
+          <span class="text-slate-700">✦</span>
+          <span class="hover:text-loma-violet transition-colors flex items-center gap-3">
+            <span class="text-xs font-mono text-loma-violet px-2 py-0.5 rounded border border-loma-violet/30">INSTITUCIONAL</span> TIDY
+          </span>
+          <span class="text-slate-700">✦</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 3. QUIÉNES SOMOS (IDENTIDAD, PROPÓSITO & ARQUETIPO CON IMAGEN CINEMÁTICA) ==================== -->
+  <section id="quienes-somos" class="py-28 px-4 md:px-8 max-w-6xl mx-auto relative z-10">
+    
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 reveal">
+      <div>
+        <div class="inline-flex items-center gap-2 text-xs font-mono tracking-widest uppercase text-loma-cyan mb-3">
+          <span class="w-1.5 h-1.5 rounded-full bg-loma-cyan"></span>
+          <span>Identidad Corporativa & ADN</span>
+        </div>
+        <h2 class="font-syne font-bold text-3xl sm:text-5xl text-white tracking-tight uppercase">
+          Quién es <span class="text-slate-400 font-light">LOMA Custom</span>
+        </h2>
+      </div>
+      <p class="max-w-md text-sm md:text-base text-slate-300 font-light">
+        Organización creada para generar <strong class="text-white font-medium">sinergia industrial</strong> en el mercado venezolano, permitiendo delegar cualquier eslabón de la cadena o su totalidad.
+      </p>
+    </div>
+
+    <!-- Bento Grid for Identity & Archetype with Thumb Integration -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+      
+      <!-- Card 1: Origen del Nombre (Spans 7 cols) with Cinematic Backdrop -->
+      <div class="md:col-span-7 pop-card glass-panel rounded-3xl p-8 border border-white/10 relative overflow-hidden group reveal">
+        <!-- Integrated cinematic preview thumb -->
+        <div class="absolute inset-0 bg-cover bg-center opacity-10 group-hover:opacity-20 transition-opacity duration-700 scale-100 group-hover:scale-105 pointer-events-none" style="background-image: url('assets/thumbs/thumb_cinematic_preview.jpg');"></div>
+        <div class="absolute top-0 right-0 p-8 opacity-10 font-syne font-extrabold text-9xl select-none">DNA</div>
+        
+        <div class="relative z-10">
+          <div class="text-xs font-mono uppercase tracking-widest text-loma-cyan mb-4">Etimología de Marca</div>
+          <h3 class="font-syne font-bold text-2xl sm:text-3xl text-white mb-6">
+            Sinergia entre Logística, Manufactura & Personalización
+          </h3>
+          
+          <!-- Carrusel fluido táctil en móvil / Grid en Desktop -->
+          <div class="flex overflow-x-auto snap-x snap-mandatory gap-3 pb-3 -mx-2 px-2 no-scrollbar sm:grid sm:grid-cols-3 sm:gap-4 sm:mx-0 sm:px-0 sm:overflow-visible mb-6">
+            <div class="w-[72vw] max-w-[260px] shrink-0 snap-center sm:w-auto sm:max-w-none sm:shrink p-4 rounded-2xl bg-black/40 border border-white/5 hover:border-loma-cyan/40 transition-colors">
+              <div class="font-syne font-bold text-xl text-loma-cyan">LO</div>
+              <div class="text-xs font-mono text-slate-400 mt-1 uppercase">Logística</div>
+              <p class="text-[11px] text-slate-300 mt-2 font-light">Aprovisionamiento y despacho nacional confiable.</p>
+            </div>
+            <div class="w-[72vw] max-w-[260px] shrink-0 snap-center sm:w-auto sm:max-w-none sm:shrink p-4 rounded-2xl bg-black/40 border border-white/5 hover:border-loma-lime/40 transition-colors">
+              <div class="font-syne font-bold text-xl text-loma-lime">MA</div>
+              <div class="text-xs font-mono text-slate-400 mt-1 uppercase">Manufactura</div>
+              <p class="text-[11px] text-slate-300 mt-2 font-light">Estándares de calidad y economías de escala.</p>
+            </div>
+            <div class="w-[72vw] max-w-[260px] shrink-0 snap-center sm:w-auto sm:max-w-none sm:shrink p-4 rounded-2xl bg-black/40 border border-white/5 hover:border-loma-orange/40 transition-colors">
+              <div class="font-syne font-bold text-xl text-loma-orange">CUSTOM</div>
+              <div class="text-xs font-mono text-slate-400 mt-1 uppercase">Hecho a la Medida</div>
+              <p class="text-[11px] text-slate-300 mt-2 font-light">Flexibilidad modular o llave en mano.</p>
+            </div>
+          </div>
+
+          <p class="text-sm text-slate-300 leading-relaxed font-light">
+            Podemos ayudarte con la <span class="text-white font-medium">operacionalización de todo tu negocio</span> o modularmente con cualquier parte del mismo, garantizando precisión y respaldo en cada etapa.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 2: Arquetipo "El Cuidador" (Spans 5 cols) -->
+      <div class="md:col-span-5 pop-card glass-panel rounded-3xl p-8 border border-white/10 relative overflow-hidden flex flex-col justify-between group reveal">
+        <div class="absolute -right-16 -bottom-16 w-48 h-48 bg-loma-lime/10 rounded-full blur-3xl"></div>
+        <div class="relative z-10">
+          <div class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-loma-lime mb-4">
+            <span>Arquetipo de Marca</span>
+            <span class="text-slate-600">/</span>
+            <span>El Cuidador</span>
+          </div>
+          <blockquote class="font-serif italic text-2xl sm:text-3xl text-white leading-snug mb-6">
+            “Nosotros somos tu aliado. Sueña y crea mientras nosotros te ayudamos a materializarlo.”
+          </blockquote>
+        </div>
+
+        <div class="pt-6 border-t border-white/10 relative z-10">
+          <div class="text-xs font-mono text-slate-400 uppercase tracking-widest mb-1">Estrategia Emocional</div>
+          <p class="text-xs text-slate-300 font-light">
+            Comunicar la tranquilidad y confianza de delegar la operación en manos especializadas para que tú puedas liderar la innovación comercial.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 3: Propósito, Misión & Visión Interactivas (Spans 12 cols) -->
+      <div class="md:col-span-12 glass-panel rounded-3xl p-8 border border-white/10 reveal">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 border-b border-white/10 pb-6">
+          <div>
+            <div class="text-xs font-mono uppercase tracking-widest text-slate-400 mb-1">Plan Estratégico Corporativo</div>
+            <h3 class="font-syne font-bold text-xl text-white uppercase">Propósito, Misión & Visión Oficiales</h3>
+          </div>
+          
+          <!-- Tab Buttons -->
+          <div class="flex items-center gap-2 p-1 bg-black/40 rounded-full border border-white/10 w-fit">
+            <button onclick="switchTab('proposito')" id="tab-proposito" class="tab-btn px-4 py-1.5 rounded-full text-xs font-mono transition-all bg-white text-black font-semibold">
+              PROPÓSITO
+            </button>
+            <button onclick="switchTab('mision')" id="tab-mision" class="tab-btn px-4 py-1.5 rounded-full text-xs font-mono transition-all text-slate-400 hover:text-white">
+              MISIÓN
+            </button>
+            <button onclick="switchTab('vision')" id="tab-vision" class="tab-btn px-4 py-1.5 rounded-full text-xs font-mono transition-all text-slate-400 hover:text-white">
+              VISIÓN
+            </button>
+          </div>
+        </div>
+
+        <!-- Tab Content Areas -->
+        <div id="tab-content-proposito" class="tab-pane active block transition-opacity duration-300">
+          <div class="flex flex-col md:flex-row items-start md:items-center gap-6">
+            <div class="w-12 h-12 rounded-2xl bg-loma-cyan/10 border border-loma-cyan/30 flex items-center justify-center text-loma-cyan shrink-0">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
+            <div>
+              <span class="text-xs font-mono text-loma-cyan uppercase tracking-widest">Nuestra Razón de Ser</span>
+              <p class="text-lg md:text-xl text-white font-normal mt-1 leading-relaxed">
+                “Ayudar a empresas y emprendedores a llevar bienestar a los hogares venezolanos.”
+              </p>
+              <p class="text-xs text-slate-400 mt-2 font-mono">FUENTE: DOCUMENTO ESTRATÉGICO OFICIAL LOMA CUSTOM</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="tab-content-mision" class="tab-pane hidden transition-opacity duration-300">
+          <div class="flex flex-col md:flex-row items-start md:items-center gap-6">
+            <div class="w-12 h-12 rounded-2xl bg-loma-lime/10 border border-loma-lime/30 flex items-center justify-center text-loma-lime shrink-0">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <div>
+              <span class="text-xs font-mono text-loma-lime uppercase tracking-widest">Compromiso Operacional</span>
+              <p class="text-lg md:text-xl text-white font-normal mt-1 leading-relaxed">
+                “Con nuestros servicios y experiencia, ayudar a los emprendedores y empresas venezolanas a materializar sus proyectos de generación de valor.”
+              </p>
+              <p class="text-xs text-slate-400 mt-2 font-mono">FUENTE: DOCUMENTO ESTRATÉGICO OFICIAL LOMA CUSTOM</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="tab-content-vision" class="tab-pane hidden transition-opacity duration-300">
+          <div class="flex flex-col md:flex-row items-start md:items-center gap-6">
+            <div class="w-12 h-12 rounded-2xl bg-loma-orange/10 border border-loma-orange/30 flex items-center justify-center text-loma-orange shrink-0">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+              </svg>
+            </div>
+            <div>
+              <span class="text-xs font-mono text-loma-orange uppercase tracking-widest">Horizontes de Crecimiento</span>
+              <p class="text-lg md:text-xl text-white font-normal mt-1 leading-relaxed">
+                “Ser reconocidos nacionalmente como una alternativa confiable en materia logística.”
+              </p>
+              <p class="text-xs text-slate-400 mt-2 font-mono">FUENTE: DOCUMENTO ESTRATÉGICO OFICIAL LOMA CUSTOM</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== 4. PORTAFOLIO DE SERVICIOS (LOS 5 PILARES CON THUMB HEADER & MODAL DETALLE) ==================== -->
+  <section id="servicios" class="py-28 px-4 md:px-8 max-w-6xl mx-auto relative z-10">
+    
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 reveal">
+      <div>
+        <div class="inline-flex items-center gap-2 text-xs font-mono tracking-widest uppercase text-loma-lime mb-3">
+          <span class="w-1.5 h-1.5 rounded-full bg-loma-lime"></span>
+          <span>Cadena de Valor Integral</span>
+        </div>
+        <h2 class="font-syne font-bold text-3xl sm:text-5xl text-white tracking-tight uppercase">
+          Los 5 Pilares de <span class="text-slate-400 font-light">Servicio</span>
+        </h2>
+      </div>
+      <p class="max-w-md text-sm md:text-base text-slate-300 font-light">
+        Cada módulo funciona de manera independiente o integrada como solución llave en mano para optimizar costes y tiempos. Haz click en cualquier tarjeta para desplegar el detalle técnico.
+      </p>
+    </div>
+
+    <!-- Header de control / swipe hint en móvil -->
+    <div class="flex md:hidden items-center justify-between text-xs font-mono text-slate-400 mb-4 px-1">
+      <div class="flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-loma-cyan animate-pulse"></span>
+        <span id="serviceCarouselCounter" class="text-white font-medium">Pilar 1 de 5</span>
+      </div>
+      <div class="flex items-center gap-1 text-[11px] text-slate-400">
+        <span>Desliza</span>
+        <svg class="w-3.5 h-3.5 animate-pulse text-loma-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+      </div>
+    </div>
+
+    <!-- Carrusel Horizontal Táctil en Móvil / Grid en Desktop -->
+    <div id="serviceCarousel" class="carousel-touch flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 -mx-4 px-4 md:mx-0 md:px-0 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 md:overflow-visible no-scrollbar">
+      
+      <!-- Pilar 1: Diseño de Producto Químico (Cyan) -->
+      <div onclick="openServiceModal(1)" class="carousel-snap w-[85vw] max-w-[340px] shrink-0 md:w-auto md:max-w-none md:shrink pop-card glow-cyan glass-panel rounded-3xl overflow-hidden border border-white/10 cursor-pointer flex flex-col justify-between group reveal">
+        <!-- Visual Thumb Header -->
+        <div class="relative h-44 w-full overflow-hidden">
+          <img src="assets/thumbs/custom_chemical_lab_hyperrealistic.jpg" alt="I+D Químico Loma Custom" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-loma-dark via-loma-dark/60 to-transparent"></div>
+          <div class="absolute top-4 left-4">
+            <span class="text-[11px] font-mono text-loma-cyan bg-black/70 backdrop-blur-md px-3 py-1 rounded-full border border-loma-cyan/40">PILAR 01</span>
+          </div>
+          <div class="absolute top-4 right-4">
+            <span class="text-[10px] font-mono text-slate-300 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full">I+D QUÍMICO</span>
+          </div>
+        </div>
+        <div class="p-6 md:p-7 flex flex-col justify-between flex-1">
+          <div>
+            <h3 class="font-syne font-bold text-xl text-white group-hover:text-loma-cyan transition-colors mb-3">
+              Diseño de Producto Químico Hecho a la Medida
+            </h3>
+            <p class="text-sm text-slate-300 leading-relaxed font-light mb-6">
+              Escuchamos tus ideas y objetivos y, con base en nuestra experiencia técnica, guiamos el desarrollo para materializar tu propuesta en un producto tangible y competitivo.
+            </p>
+          </div>
+          <div>
+            <div class="text-[11px] font-mono text-slate-400 uppercase tracking-widest mb-3">Líneas de Desarrollo:</div>
+            <div class="flex flex-wrap gap-1.5 mb-6">
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-300">Tejidos & Ropa</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-300">Cocina & Hogar</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-300">Automotriz</span>
+            </div>
+            <div class="w-full py-2.5 rounded-xl border border-white/10 text-xs font-mono text-white tracking-wider uppercase group-hover:bg-loma-cyan group-hover:text-black group-hover:border-loma-cyan transition-all flex items-center justify-center gap-2">
+              <span>Ver Detalle Ampliado</span>
+              <svg class="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pilar 2: Procura Nacional e Internacional (Orange) -->
+      <div onclick="openServiceModal(2)" class="carousel-snap w-[85vw] max-w-[340px] shrink-0 md:w-auto md:max-w-none md:shrink pop-card glow-orange glass-panel rounded-3xl overflow-hidden border border-white/10 cursor-pointer flex flex-col justify-between group reveal">
+        <!-- Visual Thumb Header -->
+        <div class="relative h-44 w-full overflow-hidden">
+          <img src="assets/thumbs/thumb_hero_dark_containers.jpg" alt="Procura y Cadena de Suministro" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-loma-dark via-loma-dark/60 to-transparent"></div>
+          <div class="absolute top-4 left-4">
+            <span class="text-[11px] font-mono text-loma-orange bg-black/70 backdrop-blur-md px-3 py-1 rounded-full border border-loma-orange/40">PILAR 02</span>
+          </div>
+          <div class="absolute top-4 right-4">
+            <span class="text-[10px] font-mono text-slate-300 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full">SUPPLY CHAIN</span>
+          </div>
+        </div>
+        <div class="p-6 md:p-7 flex flex-col justify-between flex-1">
+          <div>
+            <h3 class="font-syne font-bold text-xl text-white group-hover:text-loma-orange transition-colors mb-3">
+              Procura Nacional e Internacional
+            </h3>
+            <p class="text-sm text-slate-300 leading-relaxed font-light mb-6">
+              A través de nuestra consolidada red de proveedores gestionamos compras estratégicas para construir sinergias que reduzcan costos y aseguren precios competitivos por volumen.
+            </p>
+          </div>
+          <div>
+            <div class="text-[11px] font-mono text-slate-400 uppercase tracking-widest mb-3">Capacidades de Procura:</div>
+            <div class="flex flex-wrap gap-1.5 mb-6">
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-300">Materias Primas</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-300">Envases & Tapas</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-300">Importación</span>
+            </div>
+            <div class="w-full py-2.5 rounded-xl border border-white/10 text-xs font-mono text-white tracking-wider uppercase group-hover:bg-loma-orange group-hover:text-black group-hover:border-loma-orange transition-all flex items-center justify-center gap-2">
+              <span>Ver Detalle Ampliado</span>
+              <svg class="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pilar 3: Logística de Fabricación (Lime) -->
+      <div onclick="openServiceModal(3)" class="carousel-snap w-[85vw] max-w-[340px] shrink-0 md:w-auto md:max-w-none md:shrink pop-card glow-lime glass-panel rounded-3xl overflow-hidden border border-white/10 cursor-pointer flex flex-col justify-between group reveal">
+        <!-- Visual Thumb Header -->
+        <div class="relative h-44 w-full overflow-hidden">
+          <img src="assets/thumbs/thumb_chemical_manufacturing_facility.jpg" alt="Manufactura Industrial Loma Custom" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-loma-dark via-loma-dark/60 to-transparent"></div>
+          <div class="absolute top-4 left-4">
+            <span class="text-[11px] font-mono text-loma-lime bg-black/70 backdrop-blur-md px-3 py-1 rounded-full border border-loma-lime/40">PILAR 03</span>
+          </div>
+          <div class="absolute top-4 right-4">
+            <span class="text-[10px] font-mono text-slate-300 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full">MANUFACTURA</span>
+          </div>
+        </div>
+        <div class="p-6 md:p-7 flex flex-col justify-between flex-1">
+          <div>
+            <h3 class="font-syne font-bold text-xl text-white group-hover:text-loma-lime transition-colors mb-3">
+              Logística de Fabricación Industrial
+            </h3>
+            <p class="text-sm text-slate-300 leading-relaxed font-light mb-6">
+              Fabricamos tus productos asegurando los mayores estándares de calidad, trazabilidad y optimización de costes unitarios apalancados en nuestra capacidad de más de 300.000 L/mes.
+            </p>
+          </div>
+          <div>
+            <div class="text-[11px] font-mono text-slate-400 uppercase tracking-widest mb-3">Estándares Técnicos:</div>
+            <div class="flex flex-wrap gap-1.5 mb-6">
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-300">Normas BPM</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-300">Llenado Automático</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-300">+300k L/Mes</span>
+            </div>
+            <div class="w-full py-2.5 rounded-xl border border-white/10 text-xs font-mono text-white tracking-wider uppercase group-hover:bg-loma-lime group-hover:text-black group-hover:border-loma-lime transition-all flex items-center justify-center gap-2">
+              <span>Ver Detalle Ampliado</span>
+              <svg class="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pilar 4: Almacenamiento (Yellow) -->
+      <div onclick="openServiceModal(4)" class="carousel-snap w-[85vw] max-w-[340px] shrink-0 md:w-auto md:max-w-none md:shrink pop-card glow-yellow glass-panel rounded-3xl overflow-hidden border border-white/10 cursor-pointer flex flex-col justify-between group reveal">
+        <!-- Visual Thumb Header -->
+        <div class="relative h-44 w-full overflow-hidden">
+          <img src="assets/thumbs/thumb_industrial_warehouse_dark_navy.jpg" alt="Almacenamiento y Warehousing" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-loma-dark via-loma-dark/60 to-transparent"></div>
+          <div class="absolute top-4 left-4">
+            <span class="text-[11px] font-mono text-loma-yellow bg-black/70 backdrop-blur-md px-3 py-1 rounded-full border border-loma-yellow/40">PILAR 04</span>
+          </div>
+          <div class="absolute top-4 right-4">
+            <span class="text-[10px] font-mono text-slate-300 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full">WAREHOUSING</span>
+          </div>
+        </div>
+        <div class="p-6 md:p-7 flex flex-col justify-between flex-1">
+          <div>
+            <h3 class="font-syne font-bold text-xl text-white group-hover:text-loma-yellow transition-colors mb-3">
+              Almacenamiento de Materias Primas y PT
+            </h3>
+            <p class="text-sm text-slate-300 leading-relaxed font-light mb-6">
+              Aseguramos el buen resguardo, control y manejo efectivo de tus inventarios con un costo logístico competitivo y un despacho oportuno bajo estrictos protocolos de seguridad.
+            </p>
+          </div>
+          <div>
+            <div class="text-[11px] font-mono text-slate-400 uppercase tracking-widest mb-3">Seguridad & Control:</div>
+            <div class="flex flex-wrap gap-1.5 mb-6">
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-300">Rotación FIFO</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-300">Resguardo Químico</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-300">Control de Lotes</span>
+            </div>
+            <div class="w-full py-2.5 rounded-xl border border-white/10 text-xs font-mono text-white tracking-wider uppercase group-hover:bg-loma-yellow group-hover:text-black group-hover:border-loma-yellow transition-all flex items-center justify-center gap-2">
+              <span>Ver Detalle Ampliado</span>
+              <svg class="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pilar 5: Logística de Despacho al Cliente (Violet) -->
+      <div onclick="openServiceModal(5)" class="carousel-snap w-[85vw] max-w-[340px] shrink-0 md:w-auto md:max-w-none md:shrink pop-card glow-violet glass-panel rounded-3xl overflow-hidden border border-white/10 cursor-pointer flex flex-col justify-between group reveal">
+        <!-- Visual Thumb Header -->
+        <div class="relative h-44 w-full overflow-hidden">
+          <img src="assets/thumbs/thumb_modern_logistics_hub.jpg" alt="Despacho y Transporte Nacional" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-loma-dark via-loma-dark/60 to-transparent"></div>
+          <div class="absolute top-4 left-4">
+            <span class="text-[11px] font-mono text-loma-violet bg-black/70 backdrop-blur-md px-3 py-1 rounded-full border border-loma-violet/40">PILAR 05</span>
+          </div>
+          <div class="absolute top-4 right-4">
+            <span class="text-[10px] font-mono text-slate-300 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full">DISTRIBUCIÓN</span>
+          </div>
+        </div>
+        <div class="p-6 md:p-7 flex flex-col justify-between flex-1">
+          <div>
+            <h3 class="font-syne font-bold text-xl text-white group-hover:text-loma-violet transition-colors mb-3">
+              Logística de Despacho al Cliente Final
+            </h3>
+            <p class="text-sm text-slate-300 leading-relaxed font-light mb-6">
+              Proveemos servicio de transporte y distribución hacia todo el país. Aseguramos que tu carga llegará a destino final de forma íntegra y puntual para la total satisfacción de tus clientes.
+            </p>
+          </div>
+          <div>
+            <div class="text-[11px] font-mono text-slate-400 uppercase tracking-widest mb-3">Alcance Logístico:</div>
+            <div class="flex flex-wrap gap-1.5 mb-6">
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-300">Cobertura Nacional</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-300">Monitoreo de Carga</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-300">Entregas B2B</span>
+            </div>
+            <div class="w-full py-2.5 rounded-xl border border-white/10 text-xs font-mono text-white tracking-wider uppercase group-hover:bg-loma-violet group-hover:text-white group-hover:border-loma-violet transition-all flex items-center justify-center gap-2">
+              <span>Ver Detalle Ampliado</span>
+              <svg class="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Callout: Custom Integration -->
+      <div class="carousel-snap w-[85vw] max-w-[340px] shrink-0 md:w-auto md:max-w-none md:shrink pop-card glass-panel rounded-3xl p-8 border border-white/10 flex flex-col justify-between bg-gradient-to-br from-white/[0.04] to-transparent relative overflow-hidden group reveal">
+        <div class="absolute -top-12 -right-12 w-40 h-40 bg-loma-cyan/10 rounded-full blur-2xl"></div>
+        <div>
+          <div class="text-xs font-mono uppercase tracking-widest text-slate-400 mb-2">Integración Modular</div>
+          <h3 class="font-syne font-bold text-2xl text-white mb-3">¿Necesitas un esquema combinado?</h3>
+          <p class="text-sm text-slate-300 font-light leading-relaxed mb-6">
+            Adapta la contratación a la etapa exacta de tu negocio: desde solo maquila y envasado, hasta la gestión completa de procura, formulación y despacho nacional.
+          </p>
+        </div>
+        <a href="#contacto" class="inline-flex items-center justify-between w-full p-4 rounded-2xl bg-white text-black font-syne font-bold text-xs uppercase tracking-wider hover:bg-slate-200 transition-colors">
+          <span>Diseñar Solución a la Medida</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Paginación interactiva para carrusel en móvil -->
+    <div id="serviceCarouselDots" class="flex md:hidden items-center justify-center gap-2 mt-4">
+      <button onclick="scrollToSlide('serviceCarousel', 0)" class="service-dot w-6 h-1.5 rounded-full bg-loma-cyan transition-all" aria-label="Ir al Pilar 1"></button>
+      <button onclick="scrollToSlide('serviceCarousel', 1)" class="service-dot w-2 h-1.5 rounded-full bg-white/20 transition-all" aria-label="Ir al Pilar 2"></button>
+      <button onclick="scrollToSlide('serviceCarousel', 2)" class="service-dot w-2 h-1.5 rounded-full bg-white/20 transition-all" aria-label="Ir al Pilar 3"></button>
+      <button onclick="scrollToSlide('serviceCarousel', 3)" class="service-dot w-2 h-1.5 rounded-full bg-white/20 transition-all" aria-label="Ir al Pilar 4"></button>
+      <button onclick="scrollToSlide('serviceCarousel', 4)" class="service-dot w-2 h-1.5 rounded-full bg-white/20 transition-all" aria-label="Ir al Pilar 5"></button>
+      <button onclick="scrollToSlide('serviceCarousel', 5)" class="service-dot w-2 h-1.5 rounded-full bg-white/20 transition-all" aria-label="Ir a Integración"></button>
+    </div>
+
+  </section>
+
+  <!-- ==================== 5. CLAVES DEL ÉXITO Y VALORES CORPORATIVOS (8 CONCEPTOS) ==================== -->
+  <section id="valores" class="py-28 px-4 md:px-8 max-w-6xl mx-auto relative z-10">
+    
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-6 reveal">
+      <div>
+        <div class="inline-flex items-center gap-2 text-xs font-mono tracking-widest uppercase text-loma-orange mb-3">
+          <span class="w-1.5 h-1.5 rounded-full bg-loma-orange"></span>
+          <span>Cultura Organizacional</span>
+        </div>
+        <h2 class="font-syne font-bold text-3xl sm:text-5xl text-white tracking-tight uppercase">
+          Claves del Éxito & <span class="text-slate-400 font-light">Valores</span>
+        </h2>
+      </div>
+      <p class="max-w-md text-sm md:text-base text-slate-300 font-light">
+        8 principios rectores que garantizan la confiabilidad, agilidad y excelencia en cada proyecto confiado a nuestras manos.
+      </p>
+    </div>
+
+    <!-- Header de control / swipe hint en móvil -->
+    <div class="flex sm:hidden items-center justify-between text-xs font-mono text-slate-400 mb-4 px-1">
+      <div class="flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-loma-orange animate-pulse"></span>
+        <span id="valuesCarouselCounter" class="text-white font-medium">Valor 1 de 8</span>
+      </div>
+      <div class="flex items-center gap-1 text-[11px] text-slate-400">
+        <span>Desliza</span>
+        <svg class="w-3.5 h-3.5 animate-pulse text-loma-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+      </div>
+    </div>
+
+    <!-- 8 Concepts Carousel Táctil en Móvil / Grid en Desktop -->
+    <div id="valuesCarousel" class="carousel-touch flex overflow-x-auto snap-x snap-mandatory gap-3.5 pb-4 -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-5 sm:overflow-visible no-scrollbar">
+      
+      <!-- 01. Rapidez (Cyan) -->
+      <div class="carousel-snap w-[78vw] max-w-[280px] shrink-0 sm:w-auto sm:max-w-none sm:shrink pop-card glass-panel rounded-2xl p-6 border border-white/10 hover:border-loma-cyan/50 transition-all duration-300 group reveal flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="font-mono text-xs text-loma-cyan font-semibold">01</span>
+            <span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-loma-cyan/10 text-loma-cyan">CLAVE DEL ÉXITO</span>
+          </div>
+          <h3 class="font-syne font-bold text-lg text-white mb-2 group-hover:text-loma-cyan transition-colors">Rapidez</h3>
+          <p class="text-xs text-slate-300 font-light leading-relaxed">
+            Debemos ser rápidos en las respuestas a las solicitudes de nuestros clientes, optimizando los tiempos de reacción operativa.
+          </p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-white/5 flex items-center gap-1.5 text-[10px] font-mono text-loma-cyan">
+          <span class="w-1 h-1 rounded-full bg-loma-cyan"></span>
+          <span>Tiempo de Reacción</span>
+        </div>
+      </div>
+
+      <!-- 02. Agilidad (Lime) -->
+      <div class="carousel-snap w-[78vw] max-w-[280px] shrink-0 sm:w-auto sm:max-w-none sm:shrink pop-card glass-panel rounded-2xl p-6 border border-white/10 hover:border-loma-lime/50 transition-all duration-300 group reveal flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="font-mono text-xs text-loma-lime font-semibold">02</span>
+            <span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-loma-lime/10 text-loma-lime">CLAVE DEL ÉXITO</span>
+          </div>
+          <h3 class="font-syne font-bold text-lg text-white mb-2 group-hover:text-loma-lime transition-colors">Agilidad</h3>
+          <p class="text-xs text-slate-300 font-light leading-relaxed">
+            Capaces de moldear nuestras formas de manera rápida y oportuna para satisfacer las necesidades siempre cambiantes del mercado.
+          </p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-white/5 flex items-center gap-1.5 text-[10px] font-mono text-loma-lime">
+          <span class="w-1 h-1 rounded-full bg-loma-lime"></span>
+          <span>Adaptación Continua</span>
+        </div>
+      </div>
+
+      <!-- 03. Precisión (Orange) -->
+      <div class="carousel-snap w-[78vw] max-w-[280px] shrink-0 sm:w-auto sm:max-w-none sm:shrink pop-card glass-panel rounded-2xl p-6 border border-white/10 hover:border-loma-orange/50 transition-all duration-300 group reveal flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="font-mono text-xs text-loma-orange font-semibold">03</span>
+            <span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-loma-orange/10 text-loma-orange">CLAVE DEL ÉXITO</span>
+          </div>
+          <h3 class="font-syne font-bold text-lg text-white mb-2 group-hover:text-loma-orange transition-colors">Precisión</h3>
+          <p class="text-xs text-slate-300 font-light leading-relaxed">
+            Tanto las entregas físicas como la información operacional y métricas de desempeño deben ser exactas y oportunas.
+          </p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-white/5 flex items-center gap-1.5 text-[10px] font-mono text-loma-orange">
+          <span class="w-1 h-1 rounded-full bg-loma-orange"></span>
+          <span>Cero Errores</span>
+        </div>
+      </div>
+
+      <!-- 04. Confianza (Yellow) -->
+      <div class="carousel-snap w-[78vw] max-w-[280px] shrink-0 sm:w-auto sm:max-w-none sm:shrink pop-card glass-panel rounded-2xl p-6 border border-white/10 hover:border-loma-yellow/50 transition-all duration-300 group reveal flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="font-mono text-xs text-loma-yellow font-semibold">04</span>
+            <span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-loma-yellow/10 text-loma-yellow">CLAVE DEL ÉXITO</span>
+          </div>
+          <h3 class="font-syne font-bold text-lg text-white mb-2 group-hover:text-loma-yellow transition-colors">Confianza</h3>
+          <p class="text-xs text-slate-300 font-light leading-relaxed">
+            Nuestro mejor contrato es nuestra palabra. Los aliados deben tener la certeza de que su proyecto está en manos seguras.
+          </p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-white/5 flex items-center gap-1.5 text-[10px] font-mono text-loma-yellow">
+          <span class="w-1 h-1 rounded-full bg-loma-yellow"></span>
+          <span>Integridad Comercial</span>
+        </div>
+      </div>
+
+      <!-- 05. Confiabilidad (Violet) -->
+      <div class="carousel-snap w-[78vw] max-w-[280px] shrink-0 sm:w-auto sm:max-w-none sm:shrink pop-card glass-panel rounded-2xl p-6 border border-white/10 hover:border-loma-violet/50 transition-all duration-300 group reveal flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="font-mono text-xs text-loma-violet font-semibold">05</span>
+            <span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-loma-violet/10 text-loma-violet">VALOR CENTRAL</span>
+          </div>
+          <h3 class="font-syne font-bold text-lg text-white mb-2 group-hover:text-loma-violet transition-colors">Confiabilidad</h3>
+          <p class="text-xs text-slate-300 font-light leading-relaxed">
+            Poner tu proyecto en nuestras manos es una responsabilidad que retribuimos con resultados. Se trata de cumplir promesas.
+          </p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-white/5 flex items-center gap-1.5 text-[10px] font-mono text-loma-violet">
+          <span class="w-1 h-1 rounded-full bg-loma-violet"></span>
+          <span>Garantía de Entrega</span>
+        </div>
+      </div>
+
+      <!-- 06. Excelencia (Cyan) -->
+      <div class="carousel-snap w-[78vw] max-w-[280px] shrink-0 sm:w-auto sm:max-w-none sm:shrink pop-card glass-panel rounded-2xl p-6 border border-white/10 hover:border-loma-cyan/50 transition-all duration-300 group reveal flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="font-mono text-xs text-loma-cyan font-semibold">06</span>
+            <span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-loma-cyan/10 text-loma-cyan">VALOR CENTRAL</span>
+          </div>
+          <h3 class="font-syne font-bold text-lg text-white mb-2 group-hover:text-loma-cyan transition-colors">Excelencia</h3>
+          <p class="text-xs text-slate-300 font-light leading-relaxed">
+            Cada actividad para generar valor a nuestros aliados la ejecutamos con el compromiso de lograr el estándar técnico más alto.
+          </p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-white/5 flex items-center gap-1.5 text-[10px] font-mono text-loma-cyan">
+          <span class="w-1 h-1 rounded-full bg-loma-cyan"></span>
+          <span>Máximo Estándar Técnico</span>
+        </div>
+      </div>
+
+      <!-- 07. Servicio (Lime) -->
+      <div class="carousel-snap w-[78vw] max-w-[280px] shrink-0 sm:w-auto sm:max-w-none sm:shrink pop-card glass-panel rounded-2xl p-6 border border-white/10 hover:border-loma-lime/50 transition-all duration-300 group reveal flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="font-mono text-xs text-loma-lime font-semibold">07</span>
+            <span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-loma-lime/10 text-loma-lime">VALOR CENTRAL</span>
+          </div>
+          <h3 class="font-syne font-bold text-lg text-white mb-2 group-hover:text-loma-lime transition-colors">Servicio</h3>
+          <p class="text-xs text-slate-300 font-light leading-relaxed">
+            Atender con diligencia y empatía. Ser versátiles y resolutivos para satisfacer requerimientos de manera eficaz.
+          </p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-white/5 flex items-center gap-1.5 text-[10px] font-mono text-loma-lime">
+          <span class="w-1 h-1 rounded-full bg-loma-lime"></span>
+          <span>Diligencia & Empatía</span>
+        </div>
+      </div>
+
+      <!-- 08. Orientación al Logro (Orange) -->
+      <div class="carousel-snap w-[78vw] max-w-[280px] shrink-0 sm:w-auto sm:max-w-none sm:shrink pop-card glass-panel rounded-2xl p-6 border border-white/10 hover:border-loma-orange/50 transition-all duration-300 group reveal flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="font-mono text-xs text-loma-orange font-semibold">08</span>
+            <span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-loma-orange/10 text-loma-orange">VALOR CENTRAL</span>
+          </div>
+          <h3 class="font-syne font-bold text-lg text-white mb-2 group-hover:text-loma-orange transition-colors">Orientación al Logro</h3>
+          <p class="text-xs text-slate-300 font-light leading-relaxed">
+            Los resultados marcan la diferencia. Si algo no marcha como esperamos, creamos activamente nuevas alternativas para triunfar.
+          </p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-white/5 flex items-center gap-1.5 text-[10px] font-mono text-loma-orange">
+          <span class="w-1 h-1 rounded-full bg-loma-orange"></span>
+          <span>Resultados Tangibles</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Indicador y Barra de Progreso Dinámica en Móvil -->
+    <div class="sm:hidden flex flex-col items-center gap-2.5 mt-4">
+      <div class="w-44 bg-white/10 h-1.5 rounded-full overflow-hidden">
+        <div id="valuesProgressBar" class="h-full bg-gradient-to-r from-loma-orange via-loma-yellow to-loma-lime rounded-full transition-all duration-300" style="width: 12.5%;"></div>
+      </div>
+      <div id="valuesCarouselDots" class="flex items-center gap-1.5">
+        <button onclick="scrollToSlide('valuesCarousel', 0)" class="val-dot w-4 h-1.5 rounded-full bg-loma-orange transition-all" aria-label="Ir a Valor 1"></button>
+        <button onclick="scrollToSlide('valuesCarousel', 1)" class="val-dot w-1.5 h-1.5 rounded-full bg-white/20 transition-all" aria-label="Ir a Valor 2"></button>
+        <button onclick="scrollToSlide('valuesCarousel', 2)" class="val-dot w-1.5 h-1.5 rounded-full bg-white/20 transition-all" aria-label="Ir a Valor 3"></button>
+        <button onclick="scrollToSlide('valuesCarousel', 3)" class="val-dot w-1.5 h-1.5 rounded-full bg-white/20 transition-all" aria-label="Ir a Valor 4"></button>
+        <button onclick="scrollToSlide('valuesCarousel', 4)" class="val-dot w-1.5 h-1.5 rounded-full bg-white/20 transition-all" aria-label="Ir a Valor 5"></button>
+        <button onclick="scrollToSlide('valuesCarousel', 5)" class="val-dot w-1.5 h-1.5 rounded-full bg-white/20 transition-all" aria-label="Ir a Valor 6"></button>
+        <button onclick="scrollToSlide('valuesCarousel', 6)" class="val-dot w-1.5 h-1.5 rounded-full bg-white/20 transition-all" aria-label="Ir a Valor 7"></button>
+        <button onclick="scrollToSlide('valuesCarousel', 7)" class="val-dot w-1.5 h-1.5 rounded-full bg-white/20 transition-all" aria-label="Ir a Valor 8"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 7. EMBUDO INFORMATIVO Y CONTACTO B2B ==================== -->
+  <section id="contacto" class="py-28 px-4 md:px-8 max-w-6xl mx-auto relative z-10">
+    <div class="glass-panel rounded-3xl p-8 md:p-14 border border-white/10 shadow-2xl relative overflow-hidden">
+      
+      <div class="absolute -top-32 -right-32 w-80 h-80 bg-loma-cyan/15 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-32 -left-32 w-80 h-80 bg-loma-orange/15 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 relative z-10">
+        
+        <!-- Left Column: Context & Direct WhatsApp Button -->
+        <div class="lg:col-span-5 flex flex-col justify-between">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-mono tracking-widest uppercase text-loma-yellow mb-3">
+              <span class="w-1.5 h-1.5 rounded-full bg-loma-yellow"></span>
+              <span>Captación de Proyectos B2B</span>
+            </div>
+            <h2 class="font-syne font-bold text-3xl sm:text-4xl text-white tracking-tight uppercase mb-4">
+              Inicia tu proyecto <span class="text-slate-400 font-light">con nosotros</span>
+            </h2>
+            <p class="text-sm text-slate-300 font-light leading-relaxed mb-8">
+              Cuéntanos sobre tu idea, volumen estimado o requerimiento logístico. Nuestro equipo técnico evaluará la factibilidad y te presentará una propuesta a la medida.
+            </p>
+
+            <div class="space-y-4 mb-8">
+              <div class="flex items-center gap-3 text-xs font-mono text-slate-300">
+                <span class="w-2 h-2 rounded-full bg-loma-lime"></span>
+                <span>Respuesta ágil en menos de 24 horas</span>
+              </div>
+              <div class="flex items-center gap-3 text-xs font-mono text-slate-300">
+                <span class="w-2 h-2 rounded-full bg-loma-cyan"></span>
+                <span>Acuerdos de confidencialidad de formulación</span>
+              </div>
+              <div class="flex items-center gap-3 text-xs font-mono text-slate-300">
+                <span class="w-2 h-2 rounded-full bg-loma-orange"></span>
+                <span>Atención a nivel nacional (Venezuela)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Direct WhatsApp Business Callout Card -->
+          <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
+                </svg>
+              </div>
+              <div>
+                <div class="text-xs font-mono font-medium text-white">Canal Directo de WhatsApp</div>
+                <div class="text-[11px] text-slate-400">Atención inmediata ejecutiva</div>
+              </div>
+            </div>
+            <a id="whatsappDirectBtn" href="https://wa.me/584120000000?text=%C2%A1Hola%20LOMA%20Custom!%20Quisiera%20obtener%20informaci%C3%B3n%20y%20cotizar%20un%20proyecto%20con%20ustedes." target="_blank" rel="noopener noreferrer" class="w-full py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-mono text-xs tracking-wider uppercase font-semibold flex items-center justify-center gap-2 transition-colors">
+              <span>Contactar por WhatsApp</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Interactive B2B Project Intake Form -->
+        <div class="lg:col-span-7">
+          <form id="projectForm" onsubmit="handleFormSubmit(event)" class="space-y-6">
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="clientName" class="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-2">Nombre y Apellido *</label>
+                <input type="text" id="clientName" required placeholder="Ej: Carlos Mendoza" class="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-loma-cyan transition-colors">
+              </div>
+              <div>
+                <label for="companyName" class="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-2">Empresa / Razón Social *</label>
+                <input type="text" id="companyName" required placeholder="Ej: Industrias Químicas C.A." class="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-loma-cyan transition-colors">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="clientEmail" class="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-2">Correo Corporativo *</label>
+                <input type="email" id="clientEmail" required placeholder="carlos@empresa.com" class="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-loma-cyan transition-colors">
+              </div>
+              <div>
+                <label for="clientPhone" class="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-2">Teléfono / WhatsApp *</label>
+                <input type="tel" id="clientPhone" required placeholder="+58 412 1234567" class="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-loma-cyan transition-colors">
+              </div>
+            </div>
+
+            <!-- Service Selection via Multi-Select Pills -->
+            <div>
+              <label class="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-2">Servicio de Interés (Los 5 Pilares) *</label>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono">
+                <label class="pillar-label p-3 rounded-xl bg-black/40 border border-white/10 flex items-center gap-2.5 cursor-pointer hover:border-loma-cyan/60 transition-colors">
+                  <input type="checkbox" name="pillars" value="Diseño de Producto Químico" class="rounded border-white/20 text-loma-cyan focus:ring-0">
+                  <span class="text-slate-300">1. Diseño Químico a la Medida</span>
+                </label>
+                <label class="pillar-label p-3 rounded-xl bg-black/40 border border-white/10 flex items-center gap-2.5 cursor-pointer hover:border-loma-orange/60 transition-colors">
+                  <input type="checkbox" name="pillars" value="Procura Nacional e Internacional" class="rounded border-white/20 text-loma-orange focus:ring-0">
+                  <span class="text-slate-300">2. Procura Nacional e Internacional</span>
+                </label>
+                <label class="pillar-label p-3 rounded-xl bg-black/40 border border-white/10 flex items-center gap-2.5 cursor-pointer hover:border-loma-lime/60 transition-colors">
+                  <input type="checkbox" name="pillars" value="Logística de Fabricación" class="rounded border-white/20 text-loma-lime focus:ring-0">
+                  <span class="text-slate-300">3. Logística de Fabricación</span>
+                </label>
+                <label class="pillar-label p-3 rounded-xl bg-black/40 border border-white/10 flex items-center gap-2.5 cursor-pointer hover:border-loma-yellow/60 transition-colors">
+                  <input type="checkbox" name="pillars" value="Almacenamiento de Materias Primas" class="rounded border-white/20 text-loma-yellow focus:ring-0">
+                  <span class="text-slate-300">4. Almacenamiento & Control</span>
+                </label>
+                <label class="pillar-label p-3 rounded-xl bg-black/40 border border-white/10 flex items-center gap-2.5 cursor-pointer hover:border-loma-violet/60 transition-colors sm:col-span-2">
+                  <input type="checkbox" name="pillars" value="Logística de Despacho" class="rounded border-white/20 text-loma-violet focus:ring-0">
+                  <span class="text-slate-300">5. Logística de Despacho Nacional</span>
+                </label>
+              </div>
+            </div>
+
+            <div>
+              <label for="projectDesc" class="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-2">Descripción del Proyecto o Necesidad *</label>
+              <textarea id="projectDesc" rows="4" required placeholder="Cuéntanos brevemente sobre los productos, volúmenes de producción estimados o rutas de transporte que requieres..." class="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-loma-cyan transition-colors resize-none"></textarea>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center gap-4">
+              <button type="submit" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-white text-black font-syne font-bold text-xs uppercase tracking-wider hover:bg-slate-200 transition-all flex items-center justify-center gap-2">
+                <span>Enviar Solicitud de Proyecto</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+              </button>
+              
+              <button type="button" onclick="sendViaWhatsApp()" class="w-full sm:w-auto px-6 py-3.5 rounded-xl border border-emerald-500/30 text-emerald-400 font-mono text-xs uppercase tracking-wider hover:bg-emerald-500/10 transition-colors flex items-center justify-center gap-2">
+                <span>Enviar Directo a WhatsApp</span>
+              </button>
+            </div>
+
+            <div id="formFeedback" class="hidden p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs font-mono">
+              ✓ Solicitud estructurada con éxito. Nos pondremos en contacto contigo en breve para analizar la propuesta técnica.
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== 8. PIE DE PÁGINA (FOOTER) ==================== -->
+  <footer class="border-t border-white/10 pt-16 pb-12 px-4 md:px-8 max-w-6xl mx-auto relative z-10 text-xs font-mono text-slate-400">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-12">
+      
+      <!-- Brand & Summary -->
+      <div class="md:col-span-5">
+        <div class="flex items-center gap-3 mb-4">
+          <img src="assets/brand/loma_cube_icon.png" alt="LOMA Custom Isotipo" class="w-7 h-7 object-contain">
+          <span class="font-syne font-bold text-base text-white tracking-wider uppercase">LOMA <span class="font-light text-slate-400">CUSTOM</span></span>
+        </div>
+        <p class="text-slate-400 text-xs font-light leading-relaxed max-w-sm mb-4">
+          Logística y Manufactura Hechas a la Medida. Organización venezolana creada para generar sinergia industrial y materializar proyectos de generación de valor.
+        </p>
+        <div class="text-[11px] text-slate-500">
+          Caracas / Valencia, Venezuela • lomacustom.com
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="md:col-span-3">
+        <div class="text-white font-medium uppercase tracking-wider mb-4">Navegación</div>
+        <ul class="space-y-2">
+          <li><a href="#hero" class="hover:text-white transition-colors">Portada / Inicio</a></li>
+          <li><a href="#quienes-somos" class="hover:text-white transition-colors">Quiénes Somos</a></li>
+          <li><a href="#servicios" class="hover:text-white transition-colors">5 Pilares de Servicio</a></li>
+          <li><a href="#valores" class="hover:text-white transition-colors">Claves del Éxito & Valores</a></li>
+          <li><a href="#clientes" class="hover:text-white transition-colors">Marcas y Clientes Aliados</a></li>
+        </ul>
+      </div>
+
+      <!-- Legal & Channels -->
+      <div class="md:col-span-4">
+        <div class="text-white font-medium uppercase tracking-wider mb-4">Contacto & Legal</div>
+        <ul class="space-y-2 mb-6">
+          <li>Instagram: <a href="https://instagram.com/lomacustom" target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:text-loma-cyan transition-colors">@lomacustom</a></li>
+          <li>Web: <span class="text-slate-300">lomacustom.com</span></li>
+          <li>Email de Proyectos: <span class="text-slate-300">proyectos@lomacustom.com</span></li>
+        </ul>
+        <div class="flex gap-4 text-[11px]">
+          <a href="#" onclick="alert('Políticas de Privacidad: LOMA Custom protege con estricta confidencialidad toda fórmula, muestra y dato técnico suministrado.'); return false;" class="hover:underline">Políticas de Privacidad</a>
+          <span class="text-slate-700">•</span>
+          <a href="#" onclick="alert('Términos de Uso: Servicios sujetos a acuerdos marco de maquila y logística en territorio nacional.'); return false;" class="hover:underline">Términos de Uso</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-400">
+      <div>
+        © 2024 - 2026 LOMA Custom C.A. Todos los derechos reservados.
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="w-1.5 h-1.5 rounded-full bg-loma-lime"></span>
+        <span>Awwwards Minimalist Design System</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== MODAL DE SERVICIO EXPANDIDO (DETALLE TÉCNICO CON THUMB HEADER) ==================== -->
+  <div id="serviceModal" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="glass-panel w-full max-w-2xl rounded-3xl overflow-hidden border border-white/15 shadow-2xl relative max-h-[92vh] flex flex-col animate-pop-in">
+      
+      <!-- Close Button -->
+      <button onclick="closeServiceModal()" class="absolute top-4 right-4 z-20 text-white hover:text-slate-300 p-2 rounded-full bg-black/60 backdrop-blur-md hover:bg-black/80 transition-colors" aria-label="Cerrar modal">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+      </button>
+
+      <!-- Modal Visual Header -->
+      <div class="relative h-48 w-full overflow-hidden shrink-0">
+        <img id="modalThumbImg" src="assets/thumbs/thumb_cinematic_industrial_lab.jpg" alt="Detalle de Pilar" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-loma-dark via-loma-dark/50 to-transparent"></div>
+        <div id="modalHeader" class="absolute bottom-4 left-6 right-6">
+          <!-- Injected via JS -->
+        </div>
+      </div>
+
+      <!-- Modal Body (Scrollable) -->
+      <div id="modalBody" class="p-6 md:p-8 space-y-4 text-sm text-slate-300 font-light leading-relaxed overflow-y-auto">
+        <!-- Injected via JS -->
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="p-6 pt-4 border-t border-white/10 flex items-center justify-between shrink-0 bg-black/40">
+        <button onclick="closeServiceModal()" class="px-5 py-2 rounded-xl text-xs font-mono text-slate-400 hover:text-white uppercase">Cerrar</button>
+        <a href="#contacto" onclick="closeServiceModal()" class="px-6 py-2.5 rounded-xl bg-white text-black font-syne font-bold text-xs uppercase hover:bg-slate-200 transition-colors">Cotizar este Pilar</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== JAVASCRIPT DINÁMICO & INTERACTIVIDAD ==================== -->
+  <script>
+    // 1. Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+    });
+
+    // 2. Tab switcher for Propósito, Misión, Visión
+    function switchTab(tabKey) {
+      const tabs = ['proposito', 'mision', 'vision'];
+      tabs.forEach(t => {
+        const btn = document.getElementById(`tab-${t}`);
+        const content = document.getElementById(`tab-content-${t}`);
+        if (t === tabKey) {
+          btn.className = "tab-btn px-4 py-1.5 rounded-full text-xs font-mono transition-all bg-white text-black font-semibold";
+          content.classList.remove('hidden');
+          content.classList.add('block');
+        } else {
+          btn.className = "tab-btn px-4 py-1.5 rounded-full text-xs font-mono transition-all text-slate-400 hover:text-white";
+          content.classList.add('hidden');
+          content.classList.remove('block');
+        }
+      });
+    }
+
+    // 3. Technical Service Data for Modal with Thumb Images
+    const serviceDetails = {
+      1: {
+        pillar: "PILAR 01",
+        color: "text-loma-cyan",
+        thumb: "assets/thumbs/custom_chemical_lab_hyperrealistic.jpg",
+        title: "Diseño de Producto Químico Hecho a la Medida",
+        desc: "Escuchamos tus ideas y objetivos comerciales. Guiados por nuestra experiencia en formulación y química aplicada, convertimos conceptos abstractos en productos tangibles, estables y de alto desempeño competitivo para el mercado venezolano.",
+        items: [
+          { title: "Cuidado de Tejidos", details: "Detergentes líquidos de ropa, suavizantes de tejidos, blanqueadores, desmanchadores, detergente en polvo y jabón en panela." },
+          { title: "Cuidado de Cocinas", details: "Lavaplatos líquidos y en crema, desengrasantes de cocina y hornillas, y desinfectantes de grado alimenticio." },
+          { title: "Cuidado del Hogar", details: "Desinfectantes aromáticos, cloro, limpiador especializado de porcelanas y desodorantes de baño." },
+          { title: "Mantenimiento Industrial & Automotriz", details: "Fórmula mecánica/marina, desengrasante heavy duty, convertidores de óxido, refrigerantes, limpiador de carburador, liga de frenos Dot 4 y desengrasantes dieléctricos." }
+        ]
+      },
+      2: {
+        pillar: "PILAR 02",
+        color: "text-loma-orange",
+        thumb: "assets/thumbs/thumb_hero_dark_containers.jpg",
+        title: "Procura Nacional e Internacional",
+        desc: "Construimos sinergias estratégicas de compras. Nuestra red de proveedores nacionales e internacionales nos permite consolidar volúmenes, abaratando costes logísticos y arancelarios para trasladar ahorros directos a tu estructura de costos.",
+        items: [
+          { title: "Materias Primas Químicas", details: "Tensioactivos, solventes, agentes quelantes, fragancias industriales, espesantes y preservantes certificados." },
+          { title: "Material de Envasado", details: "Botellas PET, polietileno de alta densidad (HDPE), galones, cuñetes, tambores de 208L, bombas dosificadoras y tapas de seguridad." },
+          { title: "Logística de Importación", details: "Gestión aduanal, consolidación de contenedores y resguardo seguro hasta arribo a planta." }
+        ]
+      },
+      3: {
+        pillar: "PILAR 03",
+        color: "text-loma-lime",
+        thumb: "assets/thumbs/thumb_chemical_manufacturing_facility.jpg",
+        title: "Logística de Fabricación Industrial",
+        desc: "Producción bajo estrictos protocolos de Buenas Prácticas de Manufactura (BPM). Garantizamos costos altamente competitivos apalancados en nuestra capacidad instalada de más de 300.000 litros mensuales.",
+        items: [
+          { title: "Mezclado y Reacción", details: "Tanques de acero inoxidable y reactores con agitación controlada para dispersiones, emulsiones y disoluciones complejas." },
+          { title: "Líneas de Llenado Automatizado", details: "Envasado semiautomático y automático desde presentaciones personales de 250ml hasta cuñetes y cisternas." },
+          { title: "Laboratorio y Control de Calidad", details: "Verificación de pH, viscosidad, densidad, estabilidad térmica y trazabilidad de lotes." }
+        ]
+      },
+      4: {
+        pillar: "PILAR 04",
+        color: "text-loma-yellow",
+        thumb: "assets/thumbs/thumb_industrial_warehouse_dark_navy.jpg",
+        title: "Almacenamiento de Materias Primas y Producto Terminado",
+        desc: "Centros de resguardo seguros, diseñados con ventilación adecuada y sistemas de contención química para garantizar la integridad física de materias primas y productos listos para la venta.",
+        items: [
+          { title: "Control de Inventario", details: "Monitoreo sistemático de entradas, salidas y rotación de stock bajo método FIFO (First In, First Out)." },
+          { title: "Seguridad Industrial", details: "Hojas de seguridad (MSDS), planes de contingencia para derrames y señalización técnica normalizada." },
+          { title: "Almacenamiento Paletizado", details: "Racks industriales de alta resistencia con capacidad para grandes volúmenes de producto terminado." }
+        ]
+      },
+      5: {
+        pillar: "PILAR 05",
+        color: "text-loma-violet",
+        thumb: "assets/thumbs/thumb_modern_logistics_hub.jpg",
+        title: "Logística de Despacho al Cliente Final",
+        desc: "Servicio de transporte y distribución con cobertura en las principales regiones comerciales e industriales de Venezuela, asegurando que tu carga llegue intacta y a tiempo.",
+        items: [
+          { title: "Flota y Rutas Nacionales", details: "Camiones y vehículos adaptados para carga de sustancias químicas e insumos industriales con permisos de transporte." },
+          { title: "Entregas en Centros de Distribución", details: "Despacho directo a almacenes de cadenas de supermercados, ferreterías, talleres y distribuidores mayoristas." },
+          { title: "Confirmación y Seguimiento", details: "Control de guías de despacho, facturación y confirmación de recepción satisfactoria por el cliente." }
+        ]
+      }
+    };
+
+    function openServiceModal(id) {
+      const data = serviceDetails[id];
+      const header = document.getElementById('modalHeader');
+      const body = document.getElementById('modalBody');
+      const thumb = document.getElementById('modalThumbImg');
+
+      thumb.src = data.thumb;
+      header.innerHTML = `
+        <span class="text-xs font-mono ${data.color} tracking-widest uppercase bg-black/60 px-2.5 py-0.5 rounded-full border border-white/10">${data.pillar}</span>
+        <h3 class="font-syne font-bold text-2xl text-white mt-1 drop-shadow-md">${data.title}</h3>
+      `;
+
+      let itemsHtml = data.items.map(it => `
+        <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/5">
+          <div class="font-syne font-bold text-sm text-white mb-1">${it.title}</div>
+          <div class="text-xs text-slate-400 font-light">${it.details}</div>
+        </div>
+      `).join('');
+
+      body.innerHTML = `
+        <p class="text-slate-300 leading-relaxed mb-4">${data.desc}</p>
+        <div class="text-xs font-mono uppercase tracking-widest text-slate-400 mb-2">Alcance y Capacidades Técnicas:</div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">${itemsHtml}</div>
+      `;
+
+      document.getElementById('serviceModal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeServiceModal() {
+      document.getElementById('serviceModal').classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    // Close on escape key
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeServiceModal();
+      }
+    });
+
+    // 4. Mobile Carousels Scroll & Navigation Controller
+    function scrollToSlide(carouselId, index) {
+      const carousel = document.getElementById(carouselId);
+      if (!carousel) return;
+      const slides = carousel.querySelectorAll('.carousel-snap');
+      if (slides[index]) {
+        const slide = slides[index];
+        const targetLeft = slide.offsetLeft - (carousel.offsetWidth - slide.offsetWidth) / 2;
+        carousel.scrollTo({
+          left: Math.max(0, targetLeft),
+          behavior: 'smooth'
+        });
+      }
+    }
+
+    function initMobileCarousels() {
+      // 1. Setup Service Carousel
+      const sCarousel = document.getElementById('serviceCarousel');
+      const sCounter = document.getElementById('serviceCarouselCounter');
+      const sDots = document.querySelectorAll('#serviceCarouselDots .service-dot');
+
+      if (sCarousel) {
+        let isScrolling = false;
+        const updateServiceIndicators = () => {
+          const slides = sCarousel.querySelectorAll('.carousel-snap');
+          const containerCenter = sCarousel.scrollLeft + sCarousel.offsetWidth / 2;
+          let closestIdx = 0;
+          let minDiff = Infinity;
+
+          slides.forEach((sl, idx) => {
+            const slideCenter = sl.offsetLeft + sl.offsetWidth / 2;
+            const diff = Math.abs(slideCenter - containerCenter);
+            if (diff < minDiff) {
+              minDiff = diff;
+              closestIdx = idx;
+            }
+          });
+
+          if (sCounter) {
+            if (closestIdx < 5) {
+              sCounter.textContent = `Pilar ${closestIdx + 1} de 5`;
+            } else {
+              sCounter.textContent = `Integración Modular`;
+            }
+          }
+
+          sDots.forEach((dot, idx) => {
+            if (idx === closestIdx) {
+              dot.className = "service-dot w-6 h-1.5 rounded-full bg-loma-cyan transition-all";
+            } else {
+              dot.className = "service-dot w-2 h-1.5 rounded-full bg-white/20 transition-all";
+            }
+          });
+        };
+
+        sCarousel.addEventListener('scroll', () => {
+          if (!isScrolling) {
+            window.requestAnimationFrame(() => {
+              updateServiceIndicators();
+              isScrolling = false;
+            });
+            isScrolling = true;
+          }
+        }, { passive: true });
+      }
+
+      // 2. Setup Values Carousel
+      const vCarousel = document.getElementById('valuesCarousel');
+      const vCounter = document.getElementById('valuesCarouselCounter');
+      const vBar = document.getElementById('valuesProgressBar');
+      const vDots = document.querySelectorAll('#valuesCarouselDots .val-dot');
+
+      if (vCarousel) {
+        let isScrollingVal = false;
+        const updateValuesIndicators = () => {
+          const slides = vCarousel.querySelectorAll('.carousel-snap');
+          const containerCenter = vCarousel.scrollLeft + vCarousel.offsetWidth / 2;
+          let closestIdx = 0;
+          let minDiff = Infinity;
+
+          slides.forEach((sl, idx) => {
+            const slideCenter = sl.offsetLeft + sl.offsetWidth / 2;
+            const diff = Math.abs(slideCenter - containerCenter);
+            if (diff < minDiff) {
+              minDiff = diff;
+              closestIdx = idx;
+            }
+          });
+
+          if (vCounter) {
+            vCounter.textContent = `Valor ${closestIdx + 1} de 8`;
+          }
+
+          if (vBar) {
+            vBar.style.width = `${((closestIdx + 1) / 8) * 100}%`;
+          }
+
+          vDots.forEach((dot, idx) => {
+            if (idx === closestIdx) {
+              dot.className = "val-dot w-4 h-1.5 rounded-full bg-loma-orange transition-all";
+            } else {
+              dot.className = "val-dot w-1.5 h-1.5 rounded-full bg-white/20 transition-all";
+            }
+          });
+        };
+
+        vCarousel.addEventListener('scroll', () => {
+          if (!isScrollingVal) {
+            window.requestAnimationFrame(() => {
+              updateValuesIndicators();
+              isScrollingVal = false;
+            });
+            isScrollingVal = true;
+          }
+        }, { passive: true });
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initMobileCarousels);
+    } else {
+      initMobileCarousels();
+    }
+
+    // 5. Form Handling & WhatsApp Integration
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('clientName').value;
+      const company = document.getElementById('companyName').value;
+      const email = document.getElementById('clientEmail').value;
+      const phone = document.getElementById('clientPhone').value;
+      const desc = document.getElementById('projectDesc').value;
+
+      const checkedPillars = Array.from(document.querySelectorAll('input[name="pillars"]:checked')).map(el => el.value);
+
+      console.log("Proyecto LOMA Custom recibido:", { name, company, email, phone, pillars: checkedPillars, desc });
+
+      const feedback = document.getElementById('formFeedback');
+      feedback.classList.remove('hidden');
+      document.getElementById('projectForm').reset();
+
+      setTimeout(() => {
+        feedback.classList.add('hidden');
+      }, 7000);
+    }
+
+    function sendViaWhatsApp() {
+      const name = document.getElementById('clientName').value || 'Un cliente';
+      const company = document.getElementById('companyName').value || 'Empresa Aliada';
+      const checkedPillars = Array.from(document.querySelectorAll('input[name="pillars"]:checked')).map(el => el.value);
+      const desc = document.getElementById('projectDesc').value || 'Requerimiento general de manufactura / logística';
+
+      const pillarsText = checkedPillars.length > 0 ? checkedPillars.join(', ') : 'Servicios Integrales';
+
+      const text = `¡Hola LOMA Custom! Mi nombre es ${name} de ${company}. Quisiera obtener información y cotizar un proyecto enfocado en: [${pillarsText}]. Descripción: ${desc}`;
+
+      const encoded = encodeURIComponent(text);
+      window.open(`https://wa.me/584120000000?text=${encoded}`, '_blank');
+    }
+
+    // 6. Scroll Reveal Engine (IntersectionObserver)
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+  </script>
+
+</body>
+</html>
